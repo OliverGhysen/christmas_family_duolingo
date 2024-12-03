@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grandpa Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        img { max-width: 200px; border-radius: 10px; }
+        button { padding: 10px; font-size: 16px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Guess the Grandchild!</h1>
+    <img id="photo" src="grandchild1.jpg" alt="Grandchild Photo">
+    <div id="options"></div>
+    <p id="feedback"></p>
+
+    <script>
+        const grandchildren = [
+            { name: "Alice", img: "alice1.png", hobby: "Painting" },
+            { name: "Bob", img: "bob1.jpg", hobby: "Cycling" },
+            { name: "Charlie", img: "charlie1.jpg", hobby: "Gaming" },
+        ];
+
+        let currentQuestion = 0;
+
+        function loadQuestion() {
+            const photo = document.getElementById('photo');
+            const options = document.getElementById('options');
+            const feedback = document.getElementById('feedback');
+            
+            const grandchild = grandchildren[currentQuestion];
+            photo.src = grandchild.img;
+            feedback.innerText = "";
+
+            options.innerHTML = "";
+            grandchildren.forEach(g => {
+                const btn = document.createElement('button');
+                btn.innerText = g.name;
+                btn.onclick = () => {
+                    feedback.innerText = g.name === grandchild.name ? "Correct!" : "Try again!";
+                };
+                options.appendChild(btn);
+            });
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
