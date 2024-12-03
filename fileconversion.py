@@ -35,16 +35,24 @@ def sanitize_filename(name):
     """Sanitize file or folder names to ensure compatibility with file systems."""
     return "".join(c if c.isalnum() or c in " ._-" else "_" for c in name)
 
+
 def create_info_txt(folder_path, data_row):
     """Create the info.txt file with the required format."""
     info_txt_path = os.path.join(folder_path, "info.txt")
-    info_content = f"""name: {data_row['Wat is je naam']}
+
+    # Extract only the first word from the name
+    first_name = data_row['Wat is je naam'].split()[0]
+
+    # Create the formatted content
+    info_content = f"""name: {first_name}
 hobbies: [{', '.join(f'"{hobby.strip()}"' for hobby in data_row['Wat zijn je hobbies'].split('+'))}]
 memories: ["{data_row['Lievelings herinnering aan daddy'].strip()}"]
 favorite_food: ["{data_row['Wat is je lievelingseten'].strip()}"]
 """
+    # Write the content to the file
     with open(info_txt_path, "w") as file:
         file.write(info_content)
+
 
 def copy_images_for_name(name, output_images_folder):
     """Copy images from the input folder to the new images folder."""
@@ -64,7 +72,8 @@ def process_csv(input_csv, input_images_folder, output_folder):
         reader = csv.DictReader(csvfile)
         for row in reader:
             name = row["Wat is je naam"].strip()
-            folder_name = sanitize_filename(name)
+            first_name = name.split()[0]
+            folder_name = sanitize_filename(first_name)
             person_folder = os.path.join(output_folder, folder_name)
 
             # Create person's folder

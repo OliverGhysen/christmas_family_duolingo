@@ -126,6 +126,7 @@
 <body>
     <header>
         <h1>Grandpa Quiz</h1>
+        <div id="score" style="margin-left: auto; font-size: 18px; font-weight: bold;">Score: 0/0</div>
         <div class="group-buttons">
             <button onclick="switchGroup('grandchildren')">Grandchildren</button>
             <button onclick="switchGroup('children')">Children</button>
@@ -164,16 +165,16 @@
             }
         },
         {
-            "name": "Vladimir Mylle",
+            "name": "Vladimir",
             "images": [
-                "family_data/grandchildren/Vladimir Mylle/images/WhatsApp Image 2024-12-03 at 20.42.02 - Vladimir Mylle.jpeg",
-                "family_data/grandchildren/Vladimir Mylle/images/IMG20240912164016 - Vladimir Mylle.jpg",
-                "family_data/grandchildren/Vladimir Mylle/images/WhatsApp Image 2024-12-03 at 20.42.02 (3) - Vladimir Mylle.jpeg",
-                "family_data/grandchildren/Vladimir Mylle/images/WhatsApp Image 2024-12-03 at 20.42.02 (2) - Vladimir Mylle.jpeg",
-                "family_data/grandchildren/Vladimir Mylle/images/WhatsApp Image 2024-12-03 at 20.42.02 (1) - Vladimir Mylle.jpeg"
+                "family_data/grandchildren/Vladimir/images/WhatsApp Image 2024-12-03 at 20.42.02 - Vladimir Mylle.jpeg",
+                "family_data/grandchildren/Vladimir/images/IMG20240912164016 - Vladimir Mylle.jpg",
+                "family_data/grandchildren/Vladimir/images/WhatsApp Image 2024-12-03 at 20.42.02 (3) - Vladimir Mylle.jpeg",
+                "family_data/grandchildren/Vladimir/images/WhatsApp Image 2024-12-03 at 20.42.02 (2) - Vladimir Mylle.jpeg",
+                "family_data/grandchildren/Vladimir/images/WhatsApp Image 2024-12-03 at 20.42.02 (1) - Vladimir Mylle.jpeg"
             ],
             "info": {
-                "name": "Vladimir Mylle",
+                "name": "Vladimir",
                 "hobbies": [
                     "Flight Simulator",
                     "Tennis"
@@ -250,61 +251,63 @@
 };
         const genericOptions = {
     "names": [
-        "bob",
-        "Taylor",
-        "Jordan",
         "Morgan",
-        "Vladimir Mylle",
-        "Alex",
-        "alice",
+        "Vladimir",
+        "Taylor",
         "charlie",
-        "Chris",
-        "isabelle"
+        "isabelle",
+        "Alex",
+        "bob",
+        "Jordan",
+        "alice",
+        "Chris"
     ],
     "hobbies": [
-        "Cycling",
-        "Photography",
+        "Hiking",
+        "Gardening",
         "Flight Simulator",
+        "Dancing",
+        "Painting",
         "Tennis",
         "Knitting",
-        "Dancing",
-        "Gardening",
-        "Kids",
         "Building",
         "making Chocolate",
-        "Hiking",
-        "Painting"
+        "Photography",
+        "Cycling",
+        "Kids"
     ],
     "favorite_food": [
-        "Tacos",
-        "Quiche",
-        "Sushi",
         "Lasagne",
         "Chocolate",
-        "Pancakes",
-        "Ramen",
-        "Ice cream",
+        "Quiche",
         "Bricks",
-        "Steak"
+        "Ramen",
+        "Steak",
+        "Tacos",
+        "Ice cream",
+        "Pancakes",
+        "Sushi"
     ],
     "memories": [
-        "Playing in de zandbak",
+        "Family karaoke night",
         "Beach bonfire",
-        "Camping in the mountains",
-        "Visiting a theme park",
-        "Falling down the rabbit hole",
-        "Playing with rabbits",
         "Noten uit een boom slaan met een wandelstok in hof ter linden",
-        "making Chocolate",
-        "Learning to cook together",
+        "Falling down the rabbit hole",
+        "Visiting a theme park",
+        "Playing in de zandbak",
+        "Playing with rabbits",
         "In de tuin werken",
-        "Family karaoke night"
+        "Learning to cook together",
+        "making Chocolate",
+        "Camping in the mountains"
     ]
 };
-                                                // readInfo.py can overwrite up to here
+                                                        // readInfo.py can overwrite up to here
         let currentGroup = Math.random() > 0.5 ? "grandchildren" : "children";
         let currentQuestionIndex = Math.floor(Math.random() * data[currentGroup].length);
         let questionType = getRandomQuestionType();
+        let totalQuestions = 0; // Total questions attempted
+        let correctAnswers = 0; // Total correct answers
 
         function switchGroup(group) {
             currentGroup = group;
@@ -391,24 +394,34 @@
                 });
             }
         }
+        function updateScore() {
+            const scoreElement = document.getElementById("score");
+            scoreElement.innerText = `Score: ${correctAnswers}/${totalQuestions}`;
+        }
 
-        function handleAnswer(button, isCorrect)  {
+        function handleAnswer(button, isCorrect) {
             // Define sound paths
             const correctSound = new Audio("sounds/sound_correct.mp3");
             const wrongSound = new Audio("sounds/sound_wrong.mp3");
 
+            // Update score
+            totalQuestions++;
             if (isCorrect) {
+                correctAnswers++;
                 button.style.backgroundColor = "green";
                 correctSound.play(); // Play correct sound
                 setTimeout(() => {
                     currentQuestionIndex = (currentQuestionIndex + 1) % data[currentGroup].length;
                     loadQuestion();
+                    updateScore();
                 }, 1000);
             } else {
                 button.style.backgroundColor = "red";
                 wrongSound.play(); // Play wrong sound
+                updateScore();
             }
         }
+
 
         // Start the first question
         loadQuestion();
