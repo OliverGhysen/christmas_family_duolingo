@@ -155,7 +155,6 @@ def update_html(data, generic_options, html_path):
     else:
         print("Could not find markers in index.html to update.")
 
-
 def main():
     # Specify the base paths
     base_path = "family_data"
