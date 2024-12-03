@@ -164,29 +164,6 @@
             }
         },
         {
-            "name": "Vladimir Mylle",
-            "images": [
-                "family_data/grandchildren/Vladimir Mylle/images/WhatsApp Image 2024-12-03 at 20.42.02 - Vladimir Mylle.jpeg",
-                "family_data/grandchildren/Vladimir Mylle/images/IMG20240912164016 - Vladimir Mylle.jpg",
-                "family_data/grandchildren/Vladimir Mylle/images/WhatsApp Image 2024-12-03 at 20.42.02 (3) - Vladimir Mylle.jpeg",
-                "family_data/grandchildren/Vladimir Mylle/images/WhatsApp Image 2024-12-03 at 20.42.02 (2) - Vladimir Mylle.jpeg",
-                "family_data/grandchildren/Vladimir Mylle/images/WhatsApp Image 2024-12-03 at 20.42.02 (1) - Vladimir Mylle.jpeg"
-            ],
-            "info": {
-                "name": "Vladimir Mylle",
-                "hobbies": [
-                    "Flight Simulator",
-                    "Tennis"
-                ],
-                "memories": [
-                    "Noten uit een boom slaan met een wandelstok in hof ter linden"
-                ],
-                "favorite_food": [
-                    "Lasagne"
-                ]
-            }
-        },
-        {
             "name": "alice",
             "images": [
                 "family_data/grandchildren/alice/images/alice1.png",
@@ -250,58 +227,53 @@
 };
         const genericOptions = {
     "names": [
+        "Chris",
+        "Alex",
         "bob",
-        "Taylor",
         "Jordan",
         "Morgan",
-        "Vladimir Mylle",
-        "Alex",
-        "alice",
+        "isabelle",
+        "Taylor",
         "charlie",
-        "Chris",
-        "isabelle"
+        "alice"
     ],
     "hobbies": [
-        "Cycling",
         "Photography",
-        "Flight Simulator",
-        "Tennis",
-        "Knitting",
-        "Dancing",
-        "Gardening",
-        "Kids",
         "Building",
+        "Painting",
+        "Knitting",
         "making Chocolate",
+        "Gardening",
+        "Cycling",
+        "Kids",
         "Hiking",
-        "Painting"
+        "Dancing"
     ],
     "favorite_food": [
-        "Tacos",
         "Quiche",
-        "Sushi",
-        "Lasagne",
-        "Chocolate",
-        "Pancakes",
         "Ramen",
+        "Steak",
         "Ice cream",
-        "Bricks",
-        "Steak"
+        "Pancakes",
+        "Sushi",
+        "Tacos",
+        "Chocolate",
+        "Bricks"
     ],
     "memories": [
-        "Playing in de zandbak",
-        "Beach bonfire",
         "Camping in the mountains",
         "Visiting a theme park",
-        "Falling down the rabbit hole",
-        "Playing with rabbits",
-        "Noten uit een boom slaan met een wandelstok in hof ter linden",
         "making Chocolate",
-        "Learning to cook together",
+        "Playing in de zandbak",
         "In de tuin werken",
-        "Family karaoke night"
+        "Playing with rabbits",
+        "Learning to cook together",
+        "Falling down the rabbit hole",
+        "Family karaoke night",
+        "Beach bonfire"
     ]
 };
-                                                // readInfo.py can overwrite up to here
+                                        // readInfo.py can overwrite up to here
         let currentGroup = Math.random() > 0.5 ? "grandchildren" : "children";
         let currentQuestionIndex = Math.floor(Math.random() * data[currentGroup].length);
         let questionType = getRandomQuestionType();
