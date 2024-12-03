@@ -48,6 +48,7 @@ def create_info_txt(folder_path, data_row):
 hobbies: [{', '.join(f'"{hobby.strip()}"' for hobby in data_row['Wat zijn je hobbies'].split('+'))}]
 memories: ["{data_row['Lievelings herinnering aan daddy'].strip()}"]
 favorite_food: ["{data_row['Wat is je lievelingseten'].strip()}"]
+study: ["{data_row['Wat studeer je'].strip()}"]
 """
     # Write the content to the file
     with open(info_txt_path, "w") as file:

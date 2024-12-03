@@ -161,6 +161,9 @@
                 ],
                 "favorite_food": [
                     "Bricks"
+                ],
+                "study": [
+                    "None"
                 ]
             }
         },
@@ -184,6 +187,9 @@
                 ],
                 "favorite_food": [
                     "Lasagne"
+                ],
+                "study": [
+                    "Luchtvaarttechnologie"
                 ]
             }
         },
@@ -204,6 +210,9 @@
                 ],
                 "favorite_food": [
                     "Ice cream"
+                ],
+                "study": [
+                    "None"
                 ]
             }
         },
@@ -224,6 +233,9 @@
                 ],
                 "favorite_food": [
                     "Chocolate"
+                ],
+                "study": [
+                    "None"
                 ]
             }
         }
@@ -244,6 +256,9 @@
                 ],
                 "favorite_food": [
                     "Quiche"
+                ],
+                "study": [
+                    "Eye surgeon"
                 ]
             }
         }
@@ -251,58 +266,68 @@
 };
         const genericOptions = {
     "names": [
-        "Morgan",
+        "Chris",
         "Vladimir",
-        "Taylor",
-        "charlie",
-        "isabelle",
-        "Alex",
-        "bob",
         "Jordan",
+        "bob",
+        "isabelle",
+        "charlie",
         "alice",
-        "Chris"
+        "Taylor",
+        "Morgan",
+        "Alex"
     ],
     "hobbies": [
-        "Hiking",
-        "Gardening",
-        "Flight Simulator",
-        "Dancing",
-        "Painting",
-        "Tennis",
-        "Knitting",
-        "Building",
         "making Chocolate",
         "Photography",
+        "Knitting",
+        "Flight Simulator",
+        "Hiking",
+        "Tennis",
         "Cycling",
-        "Kids"
+        "Kids",
+        "Painting",
+        "Dancing",
+        "Gardening",
+        "Building"
     ],
     "favorite_food": [
-        "Lasagne",
-        "Chocolate",
-        "Quiche",
-        "Bricks",
         "Ramen",
+        "Sushi",
+        "Quiche",
         "Steak",
+        "Bricks",
         "Tacos",
+        "Lasagne",
         "Ice cream",
         "Pancakes",
-        "Sushi"
+        "Chocolate"
     ],
     "memories": [
-        "Family karaoke night",
-        "Beach bonfire",
-        "Noten uit een boom slaan met een wandelstok in hof ter linden",
-        "Falling down the rabbit hole",
-        "Visiting a theme park",
-        "Playing in de zandbak",
-        "Playing with rabbits",
-        "In de tuin werken",
-        "Learning to cook together",
         "making Chocolate",
-        "Camping in the mountains"
+        "Visiting a theme park",
+        "Learning to cook together",
+        "Falling down the rabbit hole",
+        "Beach bonfire",
+        "Playing with rabbits",
+        "Family karaoke night",
+        "Camping in the mountains",
+        "Noten uit een boom slaan met een wandelstok in hof ter linden",
+        "Playing in de zandbak",
+        "In de tuin werken"
+    ],
+    "study": [
+        "Luchtvaarttechnologie",
+        "Computer Science",
+        "Eye surgeon",
+        "Economics",
+        "Art History",
+        "Mechanical Engineering",
+        "None",
+        "Biology"
     ]
 };
-                                                        // readInfo.py can overwrite up to here
+                                                                        // readInfo.py can overwrite up to here
         let currentGroup = Math.random() > 0.5 ? "grandchildren" : "children";
         let currentQuestionIndex = Math.floor(Math.random() * data[currentGroup].length);
         let questionType = getRandomQuestionType();
@@ -316,9 +341,10 @@
         }
 
         function getRandomQuestionType() {
-            const types = ["name", "hobbies", "favorite_food", "favorite_memory"];
+            const types = ["name", "hobbies", "favorite_food", "favorite_memory", "study"];
             return types[Math.floor(Math.random() * types.length)];
         }
+
 
         function shuffleArray(array) {
             return array.sort(() => Math.random() - 0.5);
@@ -337,6 +363,7 @@
             // Shuffle the final array and return
             return shuffleArray(allOptions);
         }
+
 
         function loadQuestion() {
             const photo = document.getElementById("photo");
@@ -392,6 +419,28 @@
                     btn.onclick = () => handleAnswer(btn, correctMemories.includes(memory));
                     options.appendChild(btn);
                 });
+            } else if (questionType === "study") {
+                if (currentGroup === "grandchildren") {
+                    question.innerText = `What does ${person.name} study?`;
+                    const correctStudies = person.info.study || [];
+                    const uniqueStudies = getUniqueOptions(correctStudies, genericOptions.study);
+                    uniqueStudies.forEach(study => {
+                        const btn = document.createElement("button");
+                        btn.innerText = study;
+                        btn.onclick = () => handleAnswer(btn, correctStudies.includes(study));
+                        options.appendChild(btn);
+                    });
+                } else if (currentGroup === "children") {
+                    question.innerText = `What work does ${person.name} do?`;
+                    const correctWork = person.info.study || []; // Assuming "study" field contains work info for children
+                    const uniqueWork = getUniqueOptions(correctWork, genericOptions.study);
+                    uniqueWork.forEach(work => {
+                        const btn = document.createElement("button");
+                        btn.innerText = work;
+                        btn.onclick = () => handleAnswer(btn, correctWork.includes(work));
+                        options.appendChild(btn);
+                    });
+                }
             }
         }
         function updateScore() {
@@ -421,8 +470,6 @@
                 updateScore();
             }
         }
-
-
         // Start the first question
         loadQuestion();
 

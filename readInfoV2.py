@@ -3,6 +3,116 @@ import json
 import ast  # To safely evaluate lists from the text file
 
 FILENAME = "index.html"
+# def parse_info_file(info_path):
+#     """
+#     Parse the info.txt file into a dictionary.
+#     Supports lists in fields like hobbies or favorite_food.
+#     """
+#     info = {}
+#     try:
+#         with open(info_path, "r") as file:
+#             for line in file:
+#                 line = line.strip()
+#                 if ":" in line:
+#                     key, value = line.split(":", 1)
+#                     key = key.strip()
+#                     value = value.strip()
+#
+#                     # Safely evaluate list-like values or keep strings
+#                     try:
+#                         info[key] = ast.literal_eval(value) if value.startswith("[") else value
+#                     except (ValueError, SyntaxError):
+#                         info[key] = value
+#     except Exception as e:
+#         print(f"Error parsing {info_path}: {e}")
+#     return info
+#
+#
+# def extract_data(base_path):
+#     data = {"grandchildren": [], "children": []}
+#     generic_options = {
+#         "names": set(),
+#         "hobbies": set(),
+#         "favorite_food": set(),
+#         "memories": set()
+#     }
+#
+#     # Extract grandchildren data
+#     grandchildren_path = os.path.join(base_path, "grandchildren")
+#     grandchildren_data, grandchildren_generic = extract_individuals_data(
+#         grandchildren_path, "grandchildren", base_path
+#     )
+#     data["grandchildren"] = grandchildren_data
+#     for key in generic_options:
+#         generic_options[key].update(grandchildren_generic[key])
+#
+#     # Extract children data
+#     children_path = os.path.join(base_path, "children")
+#     children_data, children_generic = extract_individuals_data(
+#         children_path, "children", base_path
+#     )
+#     data["children"] = children_data
+#     for key in generic_options:
+#         generic_options[key].update(children_generic[key])
+#
+#     # Add fake examples to generic options
+#     generic_options["names"].update(["Alex", "Jordan", "Taylor", "Morgan", "Chris"])
+#     generic_options["hobbies"].update(["Dancing", "Gardening", "Cycling", "Knitting", "Photography"])
+#     generic_options["favorite_food"].update(["Sushi", "Tacos", "Pancakes", "Steak", "Ramen"])
+#     generic_options["memories"].update([
+#         "Camping in the mountains",
+#         "Beach bonfire",
+#         "Family karaoke night",
+#         "Visiting a theme park",
+#         "Learning to cook together"
+#     ])
+#
+#     # Convert sets to lists for serialization
+#     for key in generic_options:
+#         generic_options[key] = list(generic_options[key])
+#
+#     return data, generic_options
+#
+#
+# def extract_individuals_data(directory_path, relationship_type, base_path):
+#     """
+#     Extract data for individuals (children or grandchildren).
+#     """
+#     individuals = []
+#     generic_options = {"names": set(), "hobbies": set(), "favorite_food": set(), "memories": set()}
+#
+#     if os.path.exists(directory_path):
+#         for individual in os.listdir(directory_path):
+#             individual_path = os.path.join(directory_path, individual)
+#             if os.path.isdir(individual_path):
+#                 # Initialize individual's data
+#                 individual_data = {"name": individual, "images": [], "info": {}}
+#
+#                 # Extract images
+#                 images_path = os.path.join(individual_path, "images")
+#                 if os.path.exists(images_path):
+#                     individual_data["images"] = [
+#                         os.path.join(base_path, relationship_type, individual, "images", img)
+#                         for img in os.listdir(images_path)
+#                         if img.lower().endswith((".png", ".jpg", ".jpeg", ".gif"))
+#                     ]
+#
+#                 # Extract info.txt content
+#                 info_path = os.path.join(individual_path, "info.txt")
+#                 if os.path.exists(info_path):
+#                     info = parse_info_file(info_path)
+#                     individual_data["info"] = info
+#
+#                     # Update generic options
+#                     generic_options["names"].add(individual)
+#                     for key in ["hobbies", "favorite_food", "memories"]:
+#                         if key in info and isinstance(info[key], list):
+#                             generic_options[key].update(info[key])
+#
+#                 # Add to list of individuals
+#                 individuals.append(individual_data)
+#     return individuals, generic_options
+
 def parse_info_file(info_path):
     """
     Parse the info.txt file into a dictionary.
@@ -34,7 +144,8 @@ def extract_data(base_path):
         "names": set(),
         "hobbies": set(),
         "favorite_food": set(),
-        "memories": set()
+        "memories": set(),
+        "study": set(),
     }
 
     # Extract grandchildren data
@@ -66,6 +177,13 @@ def extract_data(base_path):
         "Visiting a theme park",
         "Learning to cook together"
     ])
+    generic_options["study"].update([
+        "Computer Science",
+        "Mechanical Engineering",
+        "Art History",
+        "Biology",
+        "Economics"
+    ])
 
     # Convert sets to lists for serialization
     for key in generic_options:
@@ -79,7 +197,13 @@ def extract_individuals_data(directory_path, relationship_type, base_path):
     Extract data for individuals (children or grandchildren).
     """
     individuals = []
-    generic_options = {"names": set(), "hobbies": set(), "favorite_food": set(), "memories": set()}
+    generic_options = {
+        "names": set(),
+        "hobbies": set(),
+        "favorite_food": set(),
+        "memories": set(),
+        "study": set(),
+    }
 
     if os.path.exists(directory_path):
         for individual in os.listdir(directory_path):
@@ -108,6 +232,11 @@ def extract_individuals_data(directory_path, relationship_type, base_path):
                     for key in ["hobbies", "favorite_food", "memories"]:
                         if key in info and isinstance(info[key], list):
                             generic_options[key].update(info[key])
+                    if "study" in info:
+                        if isinstance(info["study"], list):
+                            generic_options["study"].update(info["study"])  # Add each study to the set
+                        else:
+                            generic_options["study"].add(info["study"])  # Add single study to the set
 
                 # Add to list of individuals
                 individuals.append(individual_data)

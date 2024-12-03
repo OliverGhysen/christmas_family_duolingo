@@ -2,3 +2,4 @@ name: Isabelle
 hobbies: ["Hiking"]
 memories: ["In de tuin werken"]
 favorite_food: ["Quiche"]
+study: ["Eye surgeon"]

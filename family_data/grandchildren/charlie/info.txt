@@ -2,3 +2,5 @@ name: Charlie
 hobbies: ["Kids", "making Chocolate"]
 memories: ["making Chocolate"]
 favorite_food: ["Chocolate"]
+study: ["None"]
+

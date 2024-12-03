@@ -2,3 +2,4 @@ name: Bob
 hobbies: ["Building"]
 memories: ["Playing in de zandbak"]
 favorite_food: ["Bricks"]
+study: ["None"]
