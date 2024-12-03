@@ -5,22 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grandpa Quiz</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        img { max-width: 200px; border-radius: 10px; }
-        button { padding: 10px; font-size: 16px; margin: 5px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #8EC5FC, #E0C3FC);
+        }
+
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 10px;
+            font-size: 24px;
+            color: #4A4A4A;
+        }
+
+        .group-buttons {
+            display: flex;
+            gap: 10px;
+            margin-left: auto; /* Push the buttons to the far right without overflowing */
+            padding-right: 50px; /* Add some padding to ensure they are within the screen */
+        }
+
+        .group-buttons button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .group-buttons button:hover {
+            background: #45A049;
+        }
+
+        .quiz-container {
+            text-align: center;
+            margin-top: 80px; /* Adjust for header */
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+            height: 200px; /* Set the desired fixed height */
+            object-fit: cover; /* Ensures the image scales and crops proportionally */
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #question {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        #options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #options button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 20px;
+            background: #f0f0f0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        #options button:hover {
+            background: #d4d4d4;
+            transform: translateY(-2px);
+        }
+
+        #options button:active {
+            transform: translateY(1px);
+        }
+
+        #feedback {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
     </style>
 </head>
 <body>
-    <h1>Grandpa Quiz: Trivia!</h1>
-    <button onclick="switchGroup('grandchildren')">Grandchildren</button>
-    <button onclick="switchGroup('children')">Children</button>
-    <img id="photo" src="" alt="Person Photo">
-    <p id="question"></p>
-    <div id="options"></div>
-    <p id="feedback"></p>
+    <header>
+        <h1>Grandpa Quiz</h1>
+        <div class="group-buttons">
+            <button onclick="switchGroup('grandchildren')">Grandchildren</button>
+            <button onclick="switchGroup('children')">Children</button>
+        </div>
+    </header>
+    <div class="quiz-container">
+        <img id="photo" src="" alt="Person Photo">
+        <p id="question"></p>
+        <div id="options"></div>
+        <p id="feedback"></p>
+    </div>
 
     <script>
-        <!-- readInfo.py can overwrite everything from here -->
+    <!-- readInfo.py can overwrite everything from here -->
 
         const data = {
     "grandchildren": [
@@ -34,16 +153,13 @@
             "info": {
                 "name": "Bob",
                 "hobbies": [
-                    "Painting",
-                    "Hiking"
+                    "Building"
                 ],
                 "memories": [
-                    "Summer trip to Italy",
-                    "First painting competition"
+                    "Playing in de zandbak"
                 ],
                 "favorite_food": [
-                    "Pizza",
-                    "Ice cream"
+                    "Bricks"
                 ]
             }
         },
@@ -56,15 +172,13 @@
             "info": {
                 "name": "Alice",
                 "hobbies": [
-                    "Painting",
-                    "Hiking"
+                    "Painting"
                 ],
                 "memories": [
-                    "Summer trip to Italy",
-                    "First painting competition"
+                    "Falling down the rabbit hole",
+                    "Playing with rabbits"
                 ],
                 "favorite_food": [
-                    "Pizza",
                     "Ice cream"
                 ]
             }
@@ -78,16 +192,14 @@
             "info": {
                 "name": "Charlie",
                 "hobbies": [
-                    "Gaming",
-                    "Surfing"
+                    "Kids",
+                    "making Chocolate"
                 ],
                 "memories": [
-                    "Summer trip to Spain",
-                    "Koprol"
+                    "making Chocolate"
                 ],
                 "favorite_food": [
-                    "Pizza",
-                    "Ice creammmm"
+                    "Chocolate"
                 ]
             }
         }
@@ -96,53 +208,79 @@
         {
             "name": "isabelle",
             "images": [
-                "all/children/isabelle/images/Reyntjens Isabelle kleur.jpg",
-                "all/children/isabelle/images/Unknown.jpeg"
+                "all/children/isabelle/images/Reyntjens Isabelle kleur.jpg"
             ],
             "info": {
                 "name": "Isabelle",
                 "hobbies": [
-                    "Painting",
                     "Hiking"
                 ],
                 "memories": [
-                    "Summer trip to Italy",
-                    "First painting competition"
+                    "In de tuin werken"
                 ],
                 "favorite_food": [
-                    "Pizza",
-                    "Ice cream"
+                    "Quiche"
                 ]
             }
         }
     ]
 };
-                // readInfo.py can overwrite up to here
-
-        const genericHobbies = ["Reading", "Cooking", "Swimming", "Painting", "Hiking", "Gaming", "Surfing"];
-        const genericFoods = ["Pizza", "Ice cream", "Pasta", "Sushi", "Burger", "Salad", "Chocolate"];
-        const genericMemories = [
-            "Building a treehouse with grandpa",
-            "Fishing at the lake during summer",
-            "Learning how to ride a bike with grandpa",
-            "Grandpa's bedtime stories about his childhood",
-            "Planting a garden together in spring",
-            "Helping grandpa fix his old car",
-            "Playing chess or board games by the fireplace",
-            "Walking in the park and feeding the ducks",
-            "Grandpa teaching how to bake cookies",
-            "Camping under the stars and making s'mores",
-            "Listening to grandpa's adventures from his travels",
-            "Grandpa's magic tricks during family gatherings",
-            "Building sandcastles at the beach"];
-
-        let currentGroup = Math.random() > 0.5 ? "grandchildren" : "children"; // Randomly choose between the two groups
-        let currentQuestionIndex = Math.floor(Math.random() * data[currentGroup].length); // Randomly select a question index
-        let questionType = getRandomQuestionType(); // Randomly select a question type using the existing function
+        const genericOptions = {
+    "names": [
+        "Taylor",
+        "Alex",
+        "charlie",
+        "Jordan",
+        "bob",
+        "alice",
+        "Morgan",
+        "isabelle",
+        "Chris"
+    ],
+    "hobbies": [
+        "Knitting",
+        "Hiking",
+        "Kids",
+        "Gardening",
+        "Dancing",
+        "Painting",
+        "Cycling",
+        "Photography",
+        "making Chocolate",
+        "Building"
+    ],
+    "favorite_food": [
+        "Chocolate",
+        "Quiche",
+        "Tacos",
+        "Sushi",
+        "Pancakes",
+        "Steak",
+        "Ramen",
+        "Ice cream",
+        "Bricks"
+    ],
+    "memories": [
+        "In de tuin werken",
+        "Camping in the mountains",
+        "Visiting a theme park",
+        "Falling down the rabbit hole",
+        "Family karaoke night",
+        "Learning to cook together",
+        "Playing in de zandbak",
+        "Playing with rabbits",
+        "Beach bonfire",
+        "making Chocolate"
+    ]
+};
+                                // readInfo.py can overwrite up to here
+        let currentGroup = Math.random() > 0.5 ? "grandchildren" : "children";
+        let currentQuestionIndex = Math.floor(Math.random() * data[currentGroup].length);
+        let questionType = getRandomQuestionType();
 
         function switchGroup(group) {
             currentGroup = group;
-            currentQuestionIndex = Math.floor(Math.random() * data[currentGroup].length); // Random index
+            currentQuestionIndex = Math.floor(Math.random() * data[currentGroup].length);
             loadQuestion();
         }
 
@@ -155,13 +293,19 @@
             return array.sort(() => Math.random() - 0.5);
         }
 
-
         function getUniqueOptions(correctOptions, genericOptions) {
-            // Combine correct options and generic options
-            const allOptions = [...new Set([...correctOptions, ...genericOptions])];
-            // Shuffle and limit to a maximum number of options
-            return shuffleArray(allOptions).slice(0, 6); // Adjust the number to fit your design
-            }
+            // Ensure exactly one correct option is included
+            const correctOption = correctOptions[Math.floor(Math.random() * correctOptions.length)];
+
+            // Select up to 3 unique wrong options
+            const wrongOptions = shuffleArray(genericOptions.filter(option => !correctOptions.includes(option))).slice(0, 3);
+
+            // Combine the correct option with the wrong ones
+            const allOptions = [correctOption, ...wrongOptions];
+
+            // Shuffle the final array and return
+            return shuffleArray(allOptions);
+        }
 
         function loadQuestion() {
             const photo = document.getElementById("photo");
@@ -179,16 +323,18 @@
 
             if (questionType === "name") {
                 question.innerText = "Who is this?";
-                group.forEach(p => {
+                const correctName = person.name;
+                const uniqueNames = getUniqueOptions([correctName], genericOptions.names);
+                uniqueNames.forEach(name => {
                     const btn = document.createElement("button");
-                    btn.innerText = p.name;
-                    btn.onclick = () => handleAnswer(btn, p.name === person.name);
+                    btn.innerText = name;
+                    btn.onclick = () => handleAnswer(btn, name === correctName);
                     options.appendChild(btn);
                 });
             } else if (questionType === "hobbies") {
                 question.innerText = `What are ${person.name}'s hobbies?`;
-                const correctHobbies = person.info.hobbies;
-                const uniqueHobbies = getUniqueOptions(correctHobbies, genericHobbies);
+                const correctHobbies = person.info.hobbies || [];
+                const uniqueHobbies = getUniqueOptions(correctHobbies, genericOptions.hobbies);
                 uniqueHobbies.forEach(hobby => {
                     const btn = document.createElement("button");
                     btn.innerText = hobby;
@@ -197,8 +343,8 @@
                 });
             } else if (questionType === "favorite_food") {
                 question.innerText = `What is ${person.name}'s favorite food?`;
-                const correctFoods = person.info.favorite_food;
-                const uniqueFoods = getUniqueOptions(correctFoods, genericFoods);
+                const correctFoods = person.info.favorite_food || [];
+                const uniqueFoods = getUniqueOptions(correctFoods, genericOptions.favorite_food);
                 uniqueFoods.forEach(food => {
                     const btn = document.createElement("button");
                     btn.innerText = food;
@@ -206,9 +352,9 @@
                     options.appendChild(btn);
                 });
             } else if (questionType === "favorite_memory") {
-                question.innerText = `What is ${person.name}'s favorite memory of daddy?`;
-                const correctMemories = person.info.memories;
-                const uniqueMemories = getUniqueOptions(correctMemories, genericMemories);
+                question.innerText = `What is ${person.name}'s favorite memory with daddy?`;
+                const correctMemories = person.info.memories || [];
+                const uniqueMemories = getUniqueOptions(correctMemories, genericOptions.memories);
                 uniqueMemories.forEach(memory => {
                     const btn = document.createElement("button");
                     btn.innerText = memory;
@@ -218,23 +364,27 @@
             }
         }
 
-        function handleAnswer(button, isCorrect) {
+        function handleAnswer(button, isCorrect)  {
+            // Define sound paths
+            const correctSound = new Audio("sounds/sound_correct.mp3");
+            const wrongSound = new Audio("sounds/sound_wrong.mp3");
+
             if (isCorrect) {
                 button.style.backgroundColor = "green";
+                correctSound.play(); // Play correct sound
                 setTimeout(() => {
                     currentQuestionIndex = (currentQuestionIndex + 1) % data[currentGroup].length;
                     loadQuestion();
                 }, 1000);
             } else {
                 button.style.backgroundColor = "red";
+                wrongSound.play(); // Play wrong sound
             }
         }
 
+        // Start the first question
+        loadQuestion();
 
-
-
-        switchGroup("grandchildren");
     </script>
 </body>
 </html>
-
