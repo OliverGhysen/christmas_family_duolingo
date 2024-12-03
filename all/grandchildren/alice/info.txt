@@ -1,4 +1,4 @@
 name: Alice
-hobbies: ["Painting", "Hiking"]
-memories: ["Summer trip to Italy", "First painting competition"]
-favorite_food: ["Pizza", "Ice cream"]
+hobbies: ["Painting"]
+memories: ["Falling down the rabbit hole", "Playing with rabbits"]
+favorite_food: ["Ice cream"]

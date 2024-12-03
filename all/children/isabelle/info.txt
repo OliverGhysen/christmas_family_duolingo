@@ -1,4 +1,4 @@
 name: Isabelle
-hobbies: ["Painting", "Hiking"]
-memories: ["Summer trip to Italy", "First painting competition"]
-favorite_food: ["Pizza", "Ice cream"]
+hobbies: ["Hiking"]
+memories: ["In de tuin werken"]
+favorite_food: ["Quiche"]

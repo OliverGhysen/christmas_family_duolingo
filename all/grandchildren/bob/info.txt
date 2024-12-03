@@ -1,4 +1,4 @@
 name: Bob
-hobbies: ["Painting", "Hiking"]
-memories: ["Summer trip to Italy", "First painting competition"]
-favorite_food: ["Pizza", "Ice cream"]
+hobbies: ["Building"]
+memories: ["Playing in de zandbak"]
+favorite_food: ["Bricks"]
