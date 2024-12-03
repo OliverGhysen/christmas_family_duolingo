@@ -11,35 +11,138 @@
     </style>
 </head>
 <body>
-    <h1>Guess the Grandchild!</h1>
-    <img id="photo" src="grandchild1.jpg" alt="Grandchild Photo">
+    <h1>Guess the Person!</h1>
+    <button onclick="switchGroup('grandchildren')">Grandchildren</button>
+    <button onclick="switchGroup('children')">Children</button>
+    <img id="photo" src="" alt="Person Photo">
     <div id="options"></div>
     <p id="feedback"></p>
 
     <script>
-        const grandchildren = [
-            { name: "Alice", img: "alice1.png", hobby: "Painting" },
-            { name: "Bob", img: "bob1.jpg", hobby: "Cycling" },
-            { name: "Charlie", img: "charlie1.jpg", hobby: "Gaming" },
-        ];
+        <!-- readInfo.py can overwrite everything from here -->
 
+        const data = {
+    "grandchildren": [
+        {
+            "name": "bob",
+            "images": [
+                "all/grandchildren/bob/images/sddefault.jpg",
+                "all/grandchildren/bob/images/bob1.jpg",
+                "all/grandchildren/bob/images/550x778.jpg"
+            ],
+            "info": {
+                "name": "Bob",
+                "hobbies": [
+                    "Painting",
+                    "Hiking"
+                ],
+                "memories": [
+                    "Summer trip to Italy",
+                    "First painting competition"
+                ],
+                "favorite_food": [
+                    "Pizza",
+                    "Ice cream"
+                ]
+            }
+        },
+        {
+            "name": "alice",
+            "images": [
+                "all/grandchildren/alice/images/alice1.png",
+                "all/grandchildren/alice/images/550x782.jpg"
+            ],
+            "info": {
+                "name": "Alice",
+                "hobbies": [
+                    "Painting",
+                    "Hiking"
+                ],
+                "memories": [
+                    "Summer trip to Italy",
+                    "First painting competition"
+                ],
+                "favorite_food": [
+                    "Pizza",
+                    "Ice cream"
+                ]
+            }
+        },
+        {
+            "name": "charlie",
+            "images": [
+                "all/grandchildren/charlie/images/charlie1.jpg",
+                "all/grandchildren/charlie/images/charlie-and-the-chocolate-factory-i149623.jpg"
+            ],
+            "info": {
+                "name": "Charlie",
+                "hobbies": [
+                    "Gaming",
+                    "Surfing"
+                ],
+                "memories": [
+                    "Summer trip to Spain",
+                    "Koprol"
+                ],
+                "favorite_food": [
+                    "Pizza",
+                    "Ice creammmm"
+                ]
+            }
+        }
+    ],
+    "children": [
+        {
+            "name": "isabelle",
+            "images": [
+                "all/children/isabelle/images/Reyntjens Isabelle kleur.jpg",
+                "all/children/isabelle/images/Unknown.jpeg"
+            ],
+            "info": {
+                "name": "Isabelle",
+                "hobbies": [
+                    "Painting",
+                    "Hiking"
+                ],
+                "memories": [
+                    "Summer trip to Italy",
+                    "First painting competition"
+                ],
+                "favorite_food": [
+                    "Pizza",
+                    "Ice cream"
+                ]
+            }
+        }
+    ]
+};
+                // readInfo.py can overwrite up to here 
+
+        let currentGroup = "grandchildren";
         let currentQuestion = 0;
+
+        function switchGroup(group) {
+            currentGroup = group;
+            currentQuestion = 0;
+            loadQuestion();
+        }
 
         function loadQuestion() {
             const photo = document.getElementById('photo');
             const options = document.getElementById('options');
             const feedback = document.getElementById('feedback');
-            
-            const grandchild = grandchildren[currentQuestion];
-            photo.src = grandchild.img;
+
+            const group = data[currentGroup];
+            const person = group[currentQuestion];
+            photo.src = person.images[0]; // Use the first image from the array
             feedback.innerText = "";
 
             options.innerHTML = "";
-            grandchildren.forEach(g => {
+            group.forEach(p => {
                 const btn = document.createElement('button');
-                btn.innerText = g.name;
+                btn.innerText = p.name;
                 btn.onclick = () => {
-                    feedback.innerText = g.name === grandchild.name ? "Correct!" : "Try again!";
+                    feedback.innerText = p.name === person.name ? "Correct!" : "Try again!";
                 };
                 options.appendChild(btn);
             });

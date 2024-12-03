@@ -1,0 +1,4 @@
+name: Charlie
+hobbies: ["Gaming", "Surfing"]
+memories: ["Summer trip to Spain", "Koprol"]
+favorite_food: ["Pizza", "Ice creammmm"]
