@@ -2,7 +2,7 @@ import os
 import json
 import ast  # To safely evaluate lists from the text file
 
-
+FILENAME = "index.html"
 def parse_info_file(info_path):
     """
     Parse the info.txt file into a dictionary.
@@ -158,13 +158,13 @@ def update_html(data, generic_options, html_path):
 
 def main():
     # Specify the base paths
-    base_path = "all"
-    html_path = "indexV2.html"
+    base_path = "family_data"
+    html_path = FILENAME
 
     # Extract data and update HTML
     extracted_data, generic_options = extract_data(base_path)
     update_html(extracted_data, generic_options, html_path)
-    print("indexV2.html updated successfully!")
+    print(FILENAME+" updated successfully!")
 
 
 if __name__ == "__main__":

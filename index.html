@@ -146,9 +146,9 @@
         {
             "name": "bob",
             "images": [
-                "all/grandchildren/bob/images/sddefault.jpg",
-                "all/grandchildren/bob/images/bob1.jpg",
-                "all/grandchildren/bob/images/550x778.jpg"
+                "family_data/grandchildren/bob/images/sddefault.jpg",
+                "family_data/grandchildren/bob/images/bob1.jpg",
+                "family_data/grandchildren/bob/images/550x778.jpg"
             ],
             "info": {
                 "name": "Bob",
@@ -166,8 +166,8 @@
         {
             "name": "alice",
             "images": [
-                "all/grandchildren/alice/images/alice1.png",
-                "all/grandchildren/alice/images/550x782.jpg"
+                "family_data/grandchildren/alice/images/alice1.png",
+                "family_data/grandchildren/alice/images/550x782.jpg"
             ],
             "info": {
                 "name": "Alice",
@@ -186,8 +186,8 @@
         {
             "name": "charlie",
             "images": [
-                "all/grandchildren/charlie/images/charlie1.jpg",
-                "all/grandchildren/charlie/images/charlie-and-the-chocolate-factory-i149623.jpg"
+                "family_data/grandchildren/charlie/images/charlie1.jpg",
+                "family_data/grandchildren/charlie/images/charlie-and-the-chocolate-factory-i149623.jpg"
             ],
             "info": {
                 "name": "Charlie",
@@ -208,7 +208,7 @@
         {
             "name": "isabelle",
             "images": [
-                "all/children/isabelle/images/Reyntjens Isabelle kleur.jpg"
+                "family_data/children/isabelle/images/Reyntjens Isabelle kleur.jpg"
             ],
             "info": {
                 "name": "Isabelle",
@@ -227,53 +227,53 @@
 };
         const genericOptions = {
     "names": [
-        "Taylor",
         "Alex",
+        "isabelle",
         "charlie",
-        "Jordan",
+        "Morgan",
+        "Taylor",
+        "Chris",
         "bob",
         "alice",
-        "Morgan",
-        "isabelle",
-        "Chris"
+        "Jordan"
     ],
     "hobbies": [
         "Knitting",
+        "Photography",
         "Hiking",
+        "Building",
+        "making Chocolate",
         "Kids",
-        "Gardening",
         "Dancing",
         "Painting",
         "Cycling",
-        "Photography",
-        "making Chocolate",
-        "Building"
+        "Gardening"
     ],
     "favorite_food": [
-        "Chocolate",
-        "Quiche",
         "Tacos",
         "Sushi",
         "Pancakes",
         "Steak",
         "Ramen",
         "Ice cream",
+        "Chocolate",
+        "Quiche",
         "Bricks"
     ],
     "memories": [
-        "In de tuin werken",
         "Camping in the mountains",
-        "Visiting a theme park",
         "Falling down the rabbit hole",
-        "Family karaoke night",
+        "Visiting a theme park",
+        "Beach bonfire",
+        "making Chocolate",
         "Learning to cook together",
         "Playing in de zandbak",
+        "In de tuin werken",
         "Playing with rabbits",
-        "Beach bonfire",
-        "making Chocolate"
+        "Family karaoke night"
     ]
 };
-                                // readInfo.py can overwrite up to here
+                                        // readInfo.py can overwrite up to here
         let currentGroup = Math.random() > 0.5 ? "grandchildren" : "children";
         let currentQuestionIndex = Math.floor(Math.random() * data[currentGroup].length);
         let questionType = getRandomQuestionType();
