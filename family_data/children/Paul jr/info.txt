@@ -1,0 +1,5 @@
+name: Paul jr.
+hobbies: ["Leuk in de tuin werken en de dieren verzorgen."]
+memories: ["Daddy op z’n rode Ferrari (traktor) rondrijdend om het gras af te rijden te Rumst."]
+favorite_food: ["Beijing duck (eend) en foie gras"]
+study: ["Handelswetenschappen"]
