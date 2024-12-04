@@ -598,9 +598,13 @@
 
     function handleAnswer(button, isCorrect) {
         totalQuestions++;
+        // Define sound paths
+        const correctSound = new Audio("sounds/sound_correct.mp3");
+        const wrongSound = new Audio("sounds/sound_wrong.mp3");
         if (isCorrect) {
             correctAnswers++;
             button.style.backgroundColor = "green";
+            correctSound.play(); // Play correct sound
             setTimeout(() => {
                 currentQuestionIndex = Math.floor(Math.random() * groupData.length);
                 loadQuestion();
@@ -608,6 +612,7 @@
             }, 1000);
         } else {
             button.style.backgroundColor = "red";
+            wrongSound.play(); // Play wrong sound
             updateScore();
         }
     }
