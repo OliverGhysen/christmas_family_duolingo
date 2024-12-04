@@ -168,21 +168,21 @@ def extract_data(base_path):
 
     # Add fake examples to generic options
     generic_options["names"].update(["Alex", "Jordan", "Taylor", "Morgan", "Chris"])
-    generic_options["hobbies"].update(["Dancing", "Gardening", "Cycling", "Knitting", "Photography"])
-    generic_options["favorite_food"].update(["Sushi", "Tacos", "Pancakes", "Steak", "Ramen"])
+    generic_options["hobbies"].update(["Dansen", "Fietsen", "Breien", "Fotografie"])
+    generic_options["favorite_food"].update(["Sushi", "Tacos", "Pannekoeken", "Steak", "Ramen"])
     generic_options["memories"].update([
-        "Camping in the mountains",
-        "Beach bonfire",
-        "Family karaoke night",
-        "Visiting a theme park",
-        "Learning to cook together"
+        "Kamperen in de bergen",
+        "Kampvuur op het strand",
+        "Family karaoke",
+        "Pretpark",
+        "Samen leren koken"
     ])
     generic_options["study"].update([
-        "Computer Science",
-        "Mechanical Engineering",
-        "Art History",
-        "Biology",
-        "Economics"
+        "Computer wetenschappen",
+        "Werktuigkundig ingenieur",
+        "Kunstgeschiedenis",
+        "Biologie",
+        "Economie"
     ])
 
     # Convert sets to lists for serialization

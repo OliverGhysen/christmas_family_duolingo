@@ -63,7 +63,7 @@
             display: none;
             position: absolute;
             top: 40px;
-            right: 0;
+            right: 10px;
             background-color: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
@@ -153,14 +153,14 @@
 </head>
 <body>
 <header>
-    <h1>Grandpa Quiz</h1>
+    <h1>Daddy Quiz</h1>
     <div id="score" style="margin-left: auto; font-size: 18px; font-weight: bold;">Score: 0/0</div>
     <div class="group-buttons">
         <button id="group-selector" onclick="toggleDropdown()">All</button>
         <div id="dropdown-menu">
-            <button onclick="switchGroup('all')">All</button>
-            <button onclick="switchGroup('grandchildren')">Grandchildren</button>
-            <button onclick="switchGroup('children')">Children</button>
+            <button onclick="switchGroup('all')">Allemaal</button>
+            <button onclick="switchGroup('grandchildren')">Kleinkinderen</button>
+            <button onclick="switchGroup('children')">Kinderen</button>
         </div>
     </div>
 </header>
@@ -281,31 +281,6 @@
     ],
     "children": [
         {
-            "name": "Paul",
-            "images": [
-                "family_data/children/Paul/images/IMG_6771 - Paul Reyntjens.jpeg",
-                "family_data/children/Paul/images/IMG_5804 - Paul Reyntjens.jpeg",
-                "family_data/children/Paul/images/IMG_5706 - Paul Reyntjens.jpeg",
-                "family_data/children/Paul/images/IMG_0962 - Paul Reyntjens.jpeg",
-                "family_data/children/Paul/images/IMG_6533 - Paul Reyntjens.jpeg"
-            ],
-            "info": {
-                "name": "Paul",
-                "hobbies": [
-                    "Leuk in de tuin werken en de dieren verzorgen."
-                ],
-                "memories": [
-                    "Daddy op z\u2019n rode Ferrari (traktor) rondrijdend om het gras af te rijden te Rumst."
-                ],
-                "favorite_food": [
-                    "Beijing duck (eend) en foie gras"
-                ],
-                "study": [
-                    "Handelswetenschappen"
-                ]
-            }
-        },
-        {
             "name": "Francesca",
             "images": [
                 "family_data/children/Francesca/images/IMG_8065 - Francesca Reyntjens.jpeg",
@@ -359,6 +334,31 @@
             }
         },
         {
+            "name": "Paul jr",
+            "images": [
+                "family_data/children/Paul jr/images/IMG_6771 - Paul Reyntjens.jpeg",
+                "family_data/children/Paul jr/images/IMG_5804 - Paul Reyntjens.jpeg",
+                "family_data/children/Paul jr/images/IMG_5706 - Paul Reyntjens.jpeg",
+                "family_data/children/Paul jr/images/IMG_0962 - Paul Reyntjens.jpeg",
+                "family_data/children/Paul jr/images/IMG_6533 - Paul Reyntjens.jpeg"
+            ],
+            "info": {
+                "name": "Paul jr.",
+                "hobbies": [
+                    "Leuk in de tuin werken en de dieren verzorgen."
+                ],
+                "memories": [
+                    "Daddy op z\u2019n rode Ferrari (traktor) rondrijdend om het gras af te rijden te Rumst."
+                ],
+                "favorite_food": [
+                    "Beijing duck (eend) en foie gras"
+                ],
+                "study": [
+                    "Handelswetenschappen"
+                ]
+            }
+        },
+        {
             "name": "isabelle",
             "images": [
                 "family_data/children/isabelle/images/Reyntjens Isabelle kleur.jpg"
@@ -383,87 +383,86 @@
 };
         const genericOptions = {
     "names": [
+        "Paul jr",
+        "Vittorio",
+        "Jordan",
+        "Morgan",
+        "Chris",
+        "Marco",
         "Tommaso",
         "isabelle",
-        "Marco",
-        "Vittorio",
-        "Paul",
-        "Taylor",
-        "Francesca",
-        "Alex",
-        "Morgan",
-        "Jordan",
-        "Chris",
         "Christian",
-        "Vladimir"
+        "Francesca",
+        "Taylor",
+        "Vladimir",
+        "Alex"
     ],
     "hobbies": [
-        "Golf",
-        "Gardening",
-        "reizen",
-        "lezen",
-        "Hiking",
-        "efoil",
-        "Photography",
-        "Swimming",
         "Flight Simulator",
-        "Tennis",
-        "Reading",
         "Leuk in de tuin werken en de dieren verzorgen.",
-        "Dancing",
-        "Cycling",
-        "Skien",
-        "Knitting",
+        "Dansen",
+        "Hiking",
+        "Gym",
         "tennis",
-        "Gym"
+        "Reading",
+        "lezen",
+        "efoil",
+        "Swimming",
+        "Breien",
+        "Tennis",
+        "Skien",
+        "Fietsen",
+        "reizen",
+        "Fotografie",
+        "Golf"
     ],
     "favorite_food": [
+        "Vol-au-vent",
+        "Pasta pesto",
+        "Fois gras",
         "Sushi",
+        "Steak",
+        "Lasagne",
+        "Beijing duck (eend) en foie gras",
         "Ramen",
         "Any meat",
         "Tacos",
-        "Fois gras",
-        "Vol-au-vent",
-        "Pasta pesto",
+        "Pannekoeken",
         "Lam",
-        "Steak",
-        "Beijing duck (eend) en foie gras",
-        "Pancakes",
-        "Lasagne",
         "Quiche"
     ],
     "memories": [
-        "Werken in de tuin",
-        "Samen jodel muziek zingen op vakantie in de bergen.",
-        "Collecting eggs in the garden",
-        "Learning to cook together",
-        "Camping in the mountains",
-        "Beach bonfire",
         "In de tuin werken",
-        "Visiting a theme park",
-        "Family karaoke night",
+        "Samen leren koken",
         "Daddy op z\u2019n rode Ferrari (traktor) rondrijdend om het gras af te rijden te Rumst.",
-        "Noten uit een boom slaan met een wandelstok in hof ter linden",
+        "Kamperen in de bergen",
+        "Pretpark",
+        "Samen jodel muziek zingen op vakantie in de bergen.",
+        "Baba au rhum",
+        "Collecting eggs in the garden",
+        "Family karaoke",
+        "Werken in de tuin",
         "Missing tooth",
-        "Baba au rhum"
+        "Noten uit een boom slaan met een wandelstok in hof ter linden",
+        "Kampvuur op het strand"
     ],
     "study": [
-        "Biology",
-        "Industri\u00eble ingenieur",
-        "Architecture",
+        "Kunstgeschiedenis",
+        "Computer wetenschappen",
         "School",
-        "Art History",
-        "Mechanical Engineering",
-        "Economics",
-        "Handelsingenieur",
-        "American school of Milano",
-        "Eye surgeon",
-        "Computer Science",
+        "Industri\u00eble ingenieur",
+        "Handelswetenschappen",
+        "Architecture",
         "Luchtvaarttechnologie",
-        "Handelswetenschappen"
+        "Eye surgeon",
+        "Werktuigkundig ingenieur",
+        "Biologie",
+        "American school of Milano",
+        "Economie",
+        "Handelsingenieur"
     ]
 };
-            // readInfo.py can overwrite up to here
+                            // readInfo.py can overwrite up to here
 
     const allGroup = [...data.grandchildren, ...data.children];
     let currentGroup = "all";
@@ -475,16 +474,21 @@
 
     function switchGroup(group) {
         currentGroup = group;
+        const groupButton = document.getElementById("group-selector");
         if (group === "all") {
             groupData = allGroup;
+            groupButton.innerText = "Allemaal";
         } else if (group === "grandchildren") {
             groupData = data.grandchildren;
+            groupButton.innerText = "Kleinkinderen";
         } else if (group === "children") {
             groupData = data.children;
+            groupButton.innerText = "Kinderen";
         }
         console.log("Switched to group:", group, "Data length:", groupData.length);
 
         currentQuestionIndex = Math.floor(Math.random() * groupData.length);
+        document.getElementById("dropdown-menu").style.display = "none";
         loadQuestion();
     }
 
@@ -531,7 +535,7 @@
         options.innerHTML = "";
 
         if (questionType === "name") {
-            question.innerText = "Who is this?";
+            question.innerText = "Wie is dit?";
             const correctName = person.name;
             const uniqueNames = getUniqueOptions([correctName], genericOptions.names);
             uniqueNames.forEach(name => {
@@ -541,7 +545,7 @@
                 options.appendChild(btn);
             });
         } else if (questionType === "hobbies") {
-            question.innerText = `What are ${person.name}'s hobbies?`;
+            question.innerText = `Wat is ${person.name}'s hobby?`;
             const correctHobbies = person.info.hobbies || [];
             if (correctHobbies.length === 0) {
                 console.error("No hobbies found for person:", person);
@@ -554,7 +558,7 @@
                 options.appendChild(btn);
             });
         } else if (questionType === "favorite_food") {
-            question.innerText = `What is ${person.name}'s favorite food?`;
+            question.innerText = `Wat is ${person.name}'s lievelingseten?`;
             const correctFoods = person.info.favorite_food || [];
             const uniqueFoods = getUniqueOptions(correctFoods, genericOptions.favorite_food);
             uniqueFoods.forEach(food => {
@@ -564,7 +568,7 @@
                 options.appendChild(btn);
             });
         } else if (questionType === "favorite_memory") {
-            question.innerText = `What is ${person.name}'s favorite memory with daddy?`;
+            question.innerText = `Wat is ${person.name}'s favoriete herinnering met daddy?`;
             const correctMemories = person.info.memories || [];
             const uniqueMemories = getUniqueOptions(correctMemories, genericOptions.memories);
             uniqueMemories.forEach(memory => {
@@ -574,7 +578,7 @@
                 options.appendChild(btn);
             });
         } else if (questionType === "study") {
-            question.innerText = `What does ${person.name} study?`;
+            question.innerText = `Wat studeert ${person.name}?`;
             const correctStudies = person.info.study || [];
             const uniqueStudies = getUniqueOptions(correctStudies, genericOptions.study);
             uniqueStudies.forEach(study => {
