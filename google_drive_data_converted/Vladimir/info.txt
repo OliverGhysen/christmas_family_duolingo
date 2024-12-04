@@ -1,0 +1,5 @@
+name: Vladimir
+hobbies: ["Flight Simulator", "Tennis"]
+memories: ["Noten uit een boom slaan met een wandelstok in hof ter linden"]
+favorite_food: ["Lasagne"]
+study: ["Luchtvaarttechnologie"]
