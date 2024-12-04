@@ -1,0 +1,5 @@
+name: Francesca
+hobbies: ["Reading"]
+memories: ["Baba au rhum"]
+favorite_food: ["Fois gras"]
+study: ["Architecture"]

@@ -1,0 +1,5 @@
+name: Christian
+hobbies: ["Skien", "lezen", "reizen", "efoil"]
+memories: ["Werken in de tuin"]
+favorite_food: ["Lam"]
+study: ["Handelsingenieur"]

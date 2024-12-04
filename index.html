@@ -38,10 +38,11 @@
         }
 
         .group-buttons {
+            position: relative;
             display: flex;
             gap: 10px;
-            margin-left: auto; /* Push the buttons to the far right without overflowing */
-            padding-right: 50px; /* Add some padding to ensure they are within the screen */
+            margin-left: auto;
+            padding-right: 50px;
         }
 
         .group-buttons button {
@@ -58,9 +59,36 @@
             background: #45A049;
         }
 
+        #dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        #dropdown-menu button {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 5px 10px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 14px;
+            color: black; /* Updated text color */
+        }
+
+        #dropdown-menu button:hover {
+            background-color: #f0f0f0;
+        }
+
         .quiz-container {
             text-align: center;
-            margin-top: 80px; /* Adjust for header */
+            margin-top: 80px;
             width: 100%;
             max-width: 600px;
             background: rgba(255, 255, 255, 0.9);
@@ -70,8 +98,8 @@
         }
 
         img {
-            height: 200px; /* Set the desired fixed height */
-            object-fit: cover; /* Ensures the image scales and crops proportionally */
+            height: 200px;
+            object-fit: cover;
             border-radius: 10px;
             margin-bottom: 20px;
         }
@@ -124,427 +152,443 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Grandpa Quiz</h1>
-        <div id="score" style="margin-left: auto; font-size: 18px; font-weight: bold;">Score: 0/0</div>
-        <div class="group-buttons">
+<header>
+    <h1>Grandpa Quiz</h1>
+    <div id="score" style="margin-left: auto; font-size: 18px; font-weight: bold;">Score: 0/0</div>
+    <div class="group-buttons">
+        <button id="group-selector" onclick="toggleDropdown()">All</button>
+        <div id="dropdown-menu">
+            <button onclick="switchGroup('all')">All</button>
             <button onclick="switchGroup('grandchildren')">Grandchildren</button>
             <button onclick="switchGroup('children')">Children</button>
         </div>
-    </header>
-    <div class="quiz-container">
-        <img id="photo" src="" alt="Person Photo">
-        <p id="question"></p>
-        <div id="options"></div>
-        <p id="feedback"></p>
     </div>
+</header>
+<div class="quiz-container">
+    <img id="photo" src="" alt="Person Photo">
+    <p id="question"></p>
+    <div id="options"></div>
+    <p id="feedback"></p>
+</div>
 
-    <script>
+<script>
     <!-- readInfo.py can overwrite everything from here -->
 
-        const data = {
-    "grandchildren": [
-        {
-            "name": "Tommaso",
-            "images": [
-                "family_data/grandchildren/Tommaso/images/IMG_9369 - Tommaso Reyntjens.jpeg",
-                "family_data/grandchildren/Tommaso/images/IMG_5808 - Tommaso Reyntjens.jpeg",
-                "family_data/grandchildren/Tommaso/images/IMG_4665 - Tommaso Reyntjens.jpeg",
-                "family_data/grandchildren/Tommaso/images/IMG_9466 - Tommaso Reyntjens.jpeg",
-                "family_data/grandchildren/Tommaso/images/IMG_6967 - Tommaso Reyntjens.jpeg"
-            ],
-            "info": {
+    const data = {
+        "grandchildren": [
+            {
                 "name": "Tommaso",
-                "hobbies": [
-                    "Swimming"
+                "images": [
+                    "family_data/grandchildren/Tommaso/images/IMG_9369 - Tommaso Reyntjens.jpeg",
+                    "family_data/grandchildren/Tommaso/images/IMG_5808 - Tommaso Reyntjens.jpeg",
+                    "family_data/grandchildren/Tommaso/images/IMG_4665 - Tommaso Reyntjens.jpeg",
+                    "family_data/grandchildren/Tommaso/images/IMG_9466 - Tommaso Reyntjens.jpeg",
+                    "family_data/grandchildren/Tommaso/images/IMG_6967 - Tommaso Reyntjens.jpeg"
                 ],
-                "memories": [
-                    "Collecting eggs in the garden"
-                ],
-                "favorite_food": [
-                    "Any meat"
-                ],
-                "study": [
-                    "American school of Milano"
-                ]
-            }
-        },
-        {
-            "name": "Vladimir",
-            "images": [
-                "family_data/grandchildren/Vladimir/images/WhatsApp Image 2024-12-03 at 20.42.02 - Vladimir Mylle.jpeg",
-                "family_data/grandchildren/Vladimir/images/IMG20240912164016 - Vladimir Mylle.jpg",
-                "family_data/grandchildren/Vladimir/images/WhatsApp Image 2024-12-03 at 20.42.02 (3) - Vladimir Mylle.jpeg",
-                "family_data/grandchildren/Vladimir/images/WhatsApp Image 2024-12-03 at 20.42.02 (2) - Vladimir Mylle.jpeg",
-                "family_data/grandchildren/Vladimir/images/WhatsApp Image 2024-12-03 at 20.42.02 (1) - Vladimir Mylle.jpeg"
-            ],
-            "info": {
+                "info": {
+                    "name": "Tommaso",
+                    "hobbies": [
+                        "Swimming"
+                    ],
+                    "memories": [
+                        "Collecting eggs in the garden"
+                    ],
+                    "favorite_food": [
+                        "Any meat"
+                    ],
+                    "study": [
+                        "American school of Milano"
+                    ]
+                }
+            },
+            {
                 "name": "Vladimir",
-                "hobbies": [
-                    "Flight Simulator",
-                    "Tennis"
+                "images": [
+                    "family_data/grandchildren/Vladimir/images/WhatsApp Image 2024-12-03 at 20.42.02 - Vladimir Mylle.jpeg",
+                    "family_data/grandchildren/Vladimir/images/IMG20240912164016 - Vladimir Mylle.jpg",
+                    "family_data/grandchildren/Vladimir/images/WhatsApp Image 2024-12-03 at 20.42.02 (3) - Vladimir Mylle.jpeg",
+                    "family_data/grandchildren/Vladimir/images/WhatsApp Image 2024-12-03 at 20.42.02 (2) - Vladimir Mylle.jpeg",
+                    "family_data/grandchildren/Vladimir/images/WhatsApp Image 2024-12-03 at 20.42.02 (1) - Vladimir Mylle.jpeg"
                 ],
-                "memories": [
-                    "Noten uit een boom slaan met een wandelstok in hof ter linden"
-                ],
-                "favorite_food": [
-                    "Lasagne"
-                ],
-                "study": [
-                    "Luchtvaarttechnologie"
-                ]
-            }
-        },
-        {
-            "name": "Vittorio",
-            "images": [
-                "family_data/grandchildren/Vittorio/images/IMG_9457 - Vittorio Reyntjens.jpeg",
-                "family_data/grandchildren/Vittorio/images/IMG_0769 - Vittorio Reyntjens.jpeg",
-                "family_data/grandchildren/Vittorio/images/IMG_9862 - Vittorio Reyntjens.jpeg",
-                "family_data/grandchildren/Vittorio/images/IMG_5817 - Vittorio Reyntjens.jpeg",
-                "family_data/grandchildren/Vittorio/images/IMG_6629 - Vittorio Reyntjens.jpeg"
-            ],
-            "info": {
+                "info": {
+                    "name": "Vladimir",
+                    "hobbies": [
+                        "Flight Simulator",
+                        "Tennis"
+                    ],
+                    "memories": [
+                        "Noten uit een boom slaan met een wandelstok in hof ter linden"
+                    ],
+                    "favorite_food": [
+                        "Lasagne"
+                    ],
+                    "study": [
+                        "Luchtvaarttechnologie"
+                    ]
+                }
+            },
+            {
                 "name": "Vittorio",
-                "hobbies": [
-                    "Gym"
+                "images": [
+                    "family_data/grandchildren/Vittorio/images/IMG_9457 - Vittorio Reyntjens.jpeg",
+                    "family_data/grandchildren/Vittorio/images/IMG_0769 - Vittorio Reyntjens.jpeg",
+                    "family_data/grandchildren/Vittorio/images/IMG_9862 - Vittorio Reyntjens.jpeg",
+                    "family_data/grandchildren/Vittorio/images/IMG_5817 - Vittorio Reyntjens.jpeg",
+                    "family_data/grandchildren/Vittorio/images/IMG_6629 - Vittorio Reyntjens.jpeg"
                 ],
-                "memories": [
-                    "Missing tooth"
-                ],
-                "favorite_food": [
-                    "Pasta pesto"
-                ],
-                "study": [
-                    "School"
-                ]
-            }
-        }
-    ],
-    "children": [
-        {
-            "name": "Paul",
-            "images": [
-                "family_data/children/Paul/images/IMG_6771 - Paul Reyntjens.jpeg",
-                "family_data/children/Paul/images/IMG_5804 - Paul Reyntjens.jpeg",
-                "family_data/children/Paul/images/IMG_5706 - Paul Reyntjens.jpeg",
-                "family_data/children/Paul/images/IMG_0962 - Paul Reyntjens.jpeg",
-                "family_data/children/Paul/images/IMG_6533 - Paul Reyntjens.jpeg"
-            ],
-            "info": {
-                "name": "Paul",
-                "hobbies": [
-                    "Leuk in de tuin werken en de dieren verzorgen."
-                ],
-                "memories": [
-                    "Daddy op z\u2019n rode Ferrari (traktor) rondrijdend om het gras af te rijden te Rumst."
-                ],
-                "favorite_food": [
-                    "Beijing duck (eend) en foie gras"
-                ],
-                "study": [
-                    "Handelswetenschappen"
-                ]
-            }
-        },
-        {
-            "name": "Francesca",
-            "images": [
-                "family_data/children/Francesca/images/IMG_8065 - Francesca Reyntjens.jpeg",
-                "family_data/children/Francesca/images/IMG_5855 - Francesca Reyntjens.jpeg",
-                "family_data/children/Francesca/images/IMG_5428 - Francesca Reyntjens.jpeg",
-                "family_data/children/Francesca/images/IMG_8225 - Francesca Reyntjens.jpeg",
-                "family_data/children/Francesca/images/IMG_5266 - Francesca Reyntjens.jpeg"
-            ],
-            "info": {
-                "name": "Francesca",
-                "hobbies": [
-                    "Reading"
-                ],
-                "memories": [
-                    "Baba au rhum"
-                ],
-                "favorite_food": [
-                    "Fois gras"
-                ],
-                "study": [
-                    "Architecture"
-                ]
-            }
-        },
-        {
-            "name": "Christian",
-            "images": [
-                "family_data/children/Christian/images/IMG_8090 - Christian Reyntjens.jpeg",
-                "family_data/children/Christian/images/IMG_8091 - Christian Reyntjens.jpeg",
-                "family_data/children/Christian/images/IMG_8094 - Christian Reyntjens.jpeg",
-                "family_data/children/Christian/images/IMG_8095 - Christian Reyntjens.jpeg",
-                "family_data/children/Christian/images/IMG_8092 - Christian Reyntjens.jpeg"
-            ],
-            "info": {
-                "name": "Christian",
-                "hobbies": [
-                    "Skien",
-                    "lezen",
-                    "reizen",
-                    "efoil"
-                ],
-                "memories": [
-                    "Werken in de tuin"
-                ],
-                "favorite_food": [
-                    "Lam"
-                ],
-                "study": [
-                    "Handelsingenieur"
-                ]
-            }
-        },
-        {
-            "name": "isabelle",
-            "images": [
-                "family_data/children/isabelle/images/Reyntjens Isabelle kleur.jpg"
-            ],
-            "info": {
-                "name": "Isabelle",
-                "hobbies": [
-                    "Hiking"
-                ],
-                "memories": [
-                    "In de tuin werken"
-                ],
-                "favorite_food": [
-                    "Quiche"
-                ],
-                "study": [
-                    "Eye surgeon"
-                ]
-            }
-        }
-    ]
-};
-        const genericOptions = {
-    "names": [
-        "Vladimir",
-        "Tommaso",
-        "Chris",
-        "Alex",
-        "Taylor",
-        "Christian",
-        "Jordan",
-        "Morgan",
-        "Vittorio",
-        "Francesca",
-        "Paul",
-        "isabelle"
-    ],
-    "hobbies": [
-        "Hiking",
-        "Photography",
-        "Tennis",
-        "Flight Simulator",
-        "efoil",
-        "Swimming",
-        "Knitting",
-        "Gym",
-        "Leuk in de tuin werken en de dieren verzorgen.",
-        "Reading",
-        "Dancing",
-        "Cycling",
-        "Gardening",
-        "reizen",
-        "lezen",
-        "Skien"
-    ],
-    "favorite_food": [
-        "Pancakes",
-        "Pasta pesto",
-        "Quiche",
-        "Sushi",
-        "Fois gras",
-        "Beijing duck (eend) en foie gras",
-        "Ramen",
-        "Steak",
-        "Any meat",
-        "Lasagne",
-        "Tacos",
-        "Lam"
-    ],
-    "memories": [
-        "Family karaoke night",
-        "Missing tooth",
-        "Baba au rhum",
-        "Visiting a theme park",
-        "In de tuin werken",
-        "Noten uit een boom slaan met een wandelstok in hof ter linden",
-        "Beach bonfire",
-        "Werken in de tuin",
-        "Learning to cook together",
-        "Daddy op z\u2019n rode Ferrari (traktor) rondrijdend om het gras af te rijden te Rumst.",
-        "Camping in the mountains",
-        "Collecting eggs in the garden"
-    ],
-    "study": [
-        "Mechanical Engineering",
-        "Art History",
-        "Handelswetenschappen",
-        "Computer Science",
-        "Handelsingenieur",
-        "Architecture",
-        "Eye surgeon",
-        "School",
-        "American school of Milano",
-        "Luchtvaarttechnologie",
-        "Economics",
-        "Biology"
-    ]
-};
-                                                                                        // readInfo.py can overwrite up to here
-        let currentGroup = Math.random() > 0.5 ? "grandchildren" : "children";
-        let currentQuestionIndex = Math.floor(Math.random() * data[currentGroup].length);
-        let questionType = getRandomQuestionType();
-        let totalQuestions = 0; // Total questions attempted
-        let correctAnswers = 0; // Total correct answers
-
-        function switchGroup(group) {
-            currentGroup = group;
-            currentQuestionIndex = Math.floor(Math.random() * data[currentGroup].length);
-            loadQuestion();
-        }
-
-        function getRandomQuestionType() {
-            const types = ["name", "hobbies", "favorite_food", "favorite_memory", "study"];
-            return types[Math.floor(Math.random() * types.length)];
-        }
-
-
-        function shuffleArray(array) {
-            return array.sort(() => Math.random() - 0.5);
-        }
-
-        function getUniqueOptions(correctOptions, genericOptions) {
-            // Ensure exactly one correct option is included
-            const correctOption = correctOptions[Math.floor(Math.random() * correctOptions.length)];
-
-            // Select up to 3 unique wrong options
-            const wrongOptions = shuffleArray(genericOptions.filter(option => !correctOptions.includes(option))).slice(0, 3);
-
-            // Combine the correct option with the wrong ones
-            const allOptions = [correctOption, ...wrongOptions];
-
-            // Shuffle the final array and return
-            return shuffleArray(allOptions);
-        }
-
-
-        function loadQuestion() {
-            const photo = document.getElementById("photo");
-            const question = document.getElementById("question");
-            const options = document.getElementById("options");
-            const feedback = document.getElementById("feedback");
-
-            const group = data[currentGroup];
-            const person = group[currentQuestionIndex];
-            questionType = getRandomQuestionType();
-
-            photo.src = person.images[Math.floor(Math.random() * person.images.length)];
-            feedback.innerText = "";
-            options.innerHTML = "";
-
-            if (questionType === "name") {
-                question.innerText = "Who is this?";
-                const correctName = person.name;
-                const uniqueNames = getUniqueOptions([correctName], genericOptions.names);
-                uniqueNames.forEach(name => {
-                    const btn = document.createElement("button");
-                    btn.innerText = name;
-                    btn.onclick = () => handleAnswer(btn, name === correctName);
-                    options.appendChild(btn);
-                });
-            } else if (questionType === "hobbies") {
-                question.innerText = `What are ${person.name}'s hobbies?`;
-                const correctHobbies = person.info.hobbies || [];
-                const uniqueHobbies = getUniqueOptions(correctHobbies, genericOptions.hobbies);
-                uniqueHobbies.forEach(hobby => {
-                    const btn = document.createElement("button");
-                    btn.innerText = hobby;
-                    btn.onclick = () => handleAnswer(btn, correctHobbies.includes(hobby));
-                    options.appendChild(btn);
-                });
-            } else if (questionType === "favorite_food") {
-                question.innerText = `What is ${person.name}'s favorite food?`;
-                const correctFoods = person.info.favorite_food || [];
-                const uniqueFoods = getUniqueOptions(correctFoods, genericOptions.favorite_food);
-                uniqueFoods.forEach(food => {
-                    const btn = document.createElement("button");
-                    btn.innerText = food;
-                    btn.onclick = () => handleAnswer(btn, correctFoods.includes(food));
-                    options.appendChild(btn);
-                });
-            } else if (questionType === "favorite_memory") {
-                question.innerText = `What is ${person.name}'s favorite memory with daddy?`;
-                const correctMemories = person.info.memories || [];
-                const uniqueMemories = getUniqueOptions(correctMemories, genericOptions.memories);
-                uniqueMemories.forEach(memory => {
-                    const btn = document.createElement("button");
-                    btn.innerText = memory;
-                    btn.onclick = () => handleAnswer(btn, correctMemories.includes(memory));
-                    options.appendChild(btn);
-                });
-            } else if (questionType === "study") {
-                if (currentGroup === "grandchildren") {
-                    question.innerText = `What does ${person.name} study?`;
-                    const correctStudies = person.info.study || [];
-                    const uniqueStudies = getUniqueOptions(correctStudies, genericOptions.study);
-                    uniqueStudies.forEach(study => {
-                        const btn = document.createElement("button");
-                        btn.innerText = study;
-                        btn.onclick = () => handleAnswer(btn, correctStudies.includes(study));
-                        options.appendChild(btn);
-                    });
-                } else if (currentGroup === "children") {
-                    question.innerText = `What work does ${person.name} do?`;
-                    const correctWork = person.info.study || []; // Assuming "study" field contains work info for children
-                    const uniqueWork = getUniqueOptions(correctWork, genericOptions.study);
-                    uniqueWork.forEach(work => {
-                        const btn = document.createElement("button");
-                        btn.innerText = work;
-                        btn.onclick = () => handleAnswer(btn, correctWork.includes(work));
-                        options.appendChild(btn);
-                    });
+                "info": {
+                    "name": "Vittorio",
+                    "hobbies": [
+                        "Gym"
+                    ],
+                    "memories": [
+                        "Missing tooth"
+                    ],
+                    "favorite_food": [
+                        "Pasta pesto"
+                    ],
+                    "study": [
+                        "School"
+                    ]
                 }
             }
-        }
-        function updateScore() {
-            const scoreElement = document.getElementById("score");
-            scoreElement.innerText = `Score: ${correctAnswers}/${totalQuestions}`;
-        }
-
-        function handleAnswer(button, isCorrect) {
-            // Define sound paths
-            const correctSound = new Audio("sounds/sound_correct.mp3");
-            const wrongSound = new Audio("sounds/sound_wrong.mp3");
-
-            // Update score
-            totalQuestions++;
-            if (isCorrect) {
-                correctAnswers++;
-                button.style.backgroundColor = "green";
-                correctSound.play(); // Play correct sound
-                setTimeout(() => {
-                    currentQuestionIndex = (currentQuestionIndex + 1) % data[currentGroup].length;
-                    loadQuestion();
-                    updateScore();
-                }, 1000);
-            } else {
-                button.style.backgroundColor = "red";
-                wrongSound.play(); // Play wrong sound
-                updateScore();
+        ],
+        "children": [
+            {
+                "name": "Paul",
+                "images": [
+                    "family_data/children/Paul/images/IMG_6771 - Paul Reyntjens.jpeg",
+                    "family_data/children/Paul/images/IMG_5804 - Paul Reyntjens.jpeg",
+                    "family_data/children/Paul/images/IMG_5706 - Paul Reyntjens.jpeg",
+                    "family_data/children/Paul/images/IMG_0962 - Paul Reyntjens.jpeg",
+                    "family_data/children/Paul/images/IMG_6533 - Paul Reyntjens.jpeg"
+                ],
+                "info": {
+                    "name": "Paul",
+                    "hobbies": [
+                        "Leuk in de tuin werken en de dieren verzorgen."
+                    ],
+                    "memories": [
+                        "Daddy op z\u2019n rode Ferrari (traktor) rondrijdend om het gras af te rijden te Rumst."
+                    ],
+                    "favorite_food": [
+                        "Beijing duck (eend) en foie gras"
+                    ],
+                    "study": [
+                        "Handelswetenschappen"
+                    ]
+                }
+            },
+            {
+                "name": "Francesca",
+                "images": [
+                    "family_data/children/Francesca/images/IMG_8065 - Francesca Reyntjens.jpeg",
+                    "family_data/children/Francesca/images/IMG_5855 - Francesca Reyntjens.jpeg",
+                    "family_data/children/Francesca/images/IMG_5428 - Francesca Reyntjens.jpeg",
+                    "family_data/children/Francesca/images/IMG_8225 - Francesca Reyntjens.jpeg",
+                    "family_data/children/Francesca/images/IMG_5266 - Francesca Reyntjens.jpeg"
+                ],
+                "info": {
+                    "name": "Francesca",
+                    "hobbies": [
+                        "Reading"
+                    ],
+                    "memories": [
+                        "Baba au rhum"
+                    ],
+                    "favorite_food": [
+                        "Fois gras"
+                    ],
+                    "study": [
+                        "Architecture"
+                    ]
+                }
+            },
+            {
+                "name": "Christian",
+                "images": [
+                    "family_data/children/Christian/images/IMG_8090 - Christian Reyntjens.jpeg",
+                    "family_data/children/Christian/images/IMG_8091 - Christian Reyntjens.jpeg",
+                    "family_data/children/Christian/images/IMG_8094 - Christian Reyntjens.jpeg",
+                    "family_data/children/Christian/images/IMG_8095 - Christian Reyntjens.jpeg",
+                    "family_data/children/Christian/images/IMG_8092 - Christian Reyntjens.jpeg"
+                ],
+                "info": {
+                    "name": "Christian",
+                    "hobbies": [
+                        "Skien",
+                        "lezen",
+                        "reizen",
+                        "efoil"
+                    ],
+                    "memories": [
+                        "Werken in de tuin"
+                    ],
+                    "favorite_food": [
+                        "Lam"
+                    ],
+                    "study": [
+                        "Handelsingenieur"
+                    ]
+                }
+            },
+            {
+                "name": "isabelle",
+                "images": [
+                    "family_data/children/isabelle/images/Reyntjens Isabelle kleur.jpg"
+                ],
+                "info": {
+                    "name": "Isabelle",
+                    "hobbies": [
+                        "Hiking"
+                    ],
+                    "memories": [
+                        "In de tuin werken"
+                    ],
+                    "favorite_food": [
+                        "Quiche"
+                    ],
+                    "study": [
+                        "Eye surgeon"
+                    ]
+                }
             }
-        }
-        // Start the first question
-        loadQuestion();
+        ]
+    };
+    const genericOptions = {
+        "names": [
+            "Vladimir",
+            "Tommaso",
+            "Chris",
+            "Alex",
+            "Taylor",
+            "Christian",
+            "Jordan",
+            "Morgan",
+            "Vittorio",
+            "Francesca",
+            "Paul",
+            "isabelle"
+        ],
+        "hobbies": [
+            "Hiking",
+            "Photography",
+            "Tennis",
+            "Flight Simulator",
+            "efoil",
+            "Swimming",
+            "Knitting",
+            "Gym",
+            "Leuk in de tuin werken en de dieren verzorgen.",
+            "Reading",
+            "Dancing",
+            "Cycling",
+            "Gardening",
+            "reizen",
+            "lezen",
+            "Skien"
+        ],
+        "favorite_food": [
+            "Pancakes",
+            "Pasta pesto",
+            "Quiche",
+            "Sushi",
+            "Fois gras",
+            "Beijing duck (eend) en foie gras",
+            "Ramen",
+            "Steak",
+            "Any meat",
+            "Lasagne",
+            "Tacos",
+            "Lam"
+        ],
+        "memories": [
+            "Family karaoke night",
+            "Missing tooth",
+            "Baba au rhum",
+            "Visiting a theme park",
+            "In de tuin werken",
+            "Noten uit een boom slaan met een wandelstok in hof ter linden",
+            "Beach bonfire",
+            "Werken in de tuin",
+            "Learning to cook together",
+            "Daddy op z\u2019n rode Ferrari (traktor) rondrijdend om het gras af te rijden te Rumst.",
+            "Camping in the mountains",
+            "Collecting eggs in the garden"
+        ],
+        "study": [
+            "Mechanical Engineering",
+            "Art History",
+            "Handelswetenschappen",
+            "Computer Science",
+            "Handelsingenieur",
+            "Architecture",
+            "Eye surgeon",
+            "School",
+            "American school of Milano",
+            "Luchtvaarttechnologie",
+            "Economics",
+            "Biology"
+        ]
+    };
+    // readInfo.py can overwrite up to here
 
-    </script>
+    const allGroup = [...data.grandchildren, ...data.children];
+    let currentGroup = "all";
+    let groupData = allGroup;
+    let currentQuestionIndex = Math.floor(Math.random() * groupData.length);
+    let questionType = getRandomQuestionType();
+    let totalQuestions = 0;
+    let correctAnswers = 0;
+
+    function switchGroup(group) {
+        currentGroup = group;
+        if (group === "all") {
+            groupData = allGroup;
+        } else if (group === "grandchildren") {
+            groupData = data.grandchildren;
+        } else if (group === "children") {
+            groupData = data.children;
+        }
+        console.log("Switched to group:", group, "Data length:", groupData.length);
+
+        currentQuestionIndex = Math.floor(Math.random() * groupData.length);
+        loadQuestion();
+    }
+
+
+    function toggleDropdown() {
+        const dropdown = document.getElementById("dropdown-menu");
+        dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+    }
+
+    function getRandomQuestionType() {
+        const types = ["name", "hobbies", "favorite_food", "favorite_memory", "study"];
+        return types[Math.floor(Math.random() * types.length)];
+    }
+
+    function shuffleArray(array) {
+        return array.sort(() => Math.random() - 0.5);
+    }
+    function getUniqueOptions(correctOptions, genericOptions) {
+        console.log("Correct Options:", correctOptions, "Generic Options:", genericOptions);
+
+        const correctOption = correctOptions[Math.floor(Math.random() * correctOptions.length)];
+        const wrongOptions = shuffleArray(genericOptions.filter(option => !correctOptions.includes(option)))
+            .slice(0, 3);
+
+        const allOptions = [correctOption, ...wrongOptions];
+        console.log("Generated Options:", allOptions);
+
+        return shuffleArray(allOptions);
+    }
+
+    function loadQuestion() {
+        const photo = document.getElementById("photo");
+        const question = document.getElementById("question");
+        const options = document.getElementById("options");
+        const feedback = document.getElementById("feedback");
+
+        const person = groupData[currentQuestionIndex];
+        console.log("Current Question Index:", currentQuestionIndex, "Person:", person);
+
+        questionType = getRandomQuestionType();
+
+        photo.src = person.images[Math.floor(Math.random() * person.images.length)];
+        feedback.innerText = "";
+        options.innerHTML = "";
+
+        if (questionType === "name") {
+            question.innerText = "Who is this?";
+            const correctName = person.name;
+            const uniqueNames = getUniqueOptions([correctName], genericOptions.names);
+            uniqueNames.forEach(name => {
+                const btn = document.createElement("button");
+                btn.innerText = name;
+                btn.onclick = () => handleAnswer(btn, name === correctName);
+                options.appendChild(btn);
+            });
+        } else if (questionType === "hobbies") {
+            question.innerText = `What are ${person.name}'s hobbies?`;
+            const correctHobbies = person.info.hobbies || [];
+            if (correctHobbies.length === 0) {
+                console.error("No hobbies found for person:", person);
+            }
+            const uniqueHobbies = getUniqueOptions(correctHobbies, genericOptions.hobbies);
+            uniqueHobbies.forEach(hobby => {
+                const btn = document.createElement("button");
+                btn.innerText = hobby;
+                btn.onclick = () => handleAnswer(btn, correctHobbies.includes(hobby));
+                options.appendChild(btn);
+            });
+        } else if (questionType === "favorite_food") {
+            question.innerText = `What is ${person.name}'s favorite food?`;
+            const correctFoods = person.info.favorite_food || [];
+            const uniqueFoods = getUniqueOptions(correctFoods, genericOptions.favorite_food);
+            uniqueFoods.forEach(food => {
+                const btn = document.createElement("button");
+                btn.innerText = food;
+                btn.onclick = () => handleAnswer(btn, correctFoods.includes(food));
+                options.appendChild(btn);
+            });
+        } else if (questionType === "favorite_memory") {
+            question.innerText = `What is ${person.name}'s favorite memory with daddy?`;
+            const correctMemories = person.info.memories || [];
+            const uniqueMemories = getUniqueOptions(correctMemories, genericOptions.memories);
+            uniqueMemories.forEach(memory => {
+                const btn = document.createElement("button");
+                btn.innerText = memory;
+                btn.onclick = () => handleAnswer(btn, correctMemories.includes(memory));
+                options.appendChild(btn);
+            });
+        } else if (questionType === "study") {
+            question.innerText = `What does ${person.name} study?`;
+            const correctStudies = person.info.study || [];
+            const uniqueStudies = getUniqueOptions(correctStudies, genericOptions.study);
+            uniqueStudies.forEach(study => {
+                const btn = document.createElement("button");
+                btn.innerText = study;
+                btn.onclick = () => handleAnswer(btn, correctStudies.includes(study));
+                options.appendChild(btn);
+            });
+        }
+    }
+
+
+    function updateScore() {
+        const scoreElement = document.getElementById("score");
+        scoreElement.innerText = `Score: ${correctAnswers}/${totalQuestions}`;
+    }
+
+    function handleAnswer(button, isCorrect) {
+        totalQuestions++;
+        if (isCorrect) {
+            correctAnswers++;
+            button.style.backgroundColor = "green";
+            setTimeout(() => {
+                currentQuestionIndex = Math.floor(Math.random() * groupData.length);
+                loadQuestion();
+                updateScore();
+            }, 1000);
+        } else {
+            button.style.backgroundColor = "red";
+            updateScore();
+        }
+    }
+
+    // Initialize the quiz with the default group
+    switchGroup("all");
+    // loadQuestion();
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
