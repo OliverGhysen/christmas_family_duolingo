@@ -1,0 +1,5 @@
+name: Dominique
+hobbies: ["Ai , lezen , astrofysica"]
+memories: ["Reizen naar Guadeloupe"]
+favorite_food: ["Lasagna"]
+study: ["Power BI"]

@@ -1,0 +1,5 @@
+name: Jack
+hobbies: ["Rugby"]
+memories: ["In slaap vallen achter het stuur"]
+favorite_food: ["Taco"]
+study: ["Economie"]

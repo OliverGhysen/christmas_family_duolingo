@@ -1,0 +1,5 @@
+name: Bjoke
+hobbies: ["skien"]
+memories: ["matching zonder tanden, we hadden beide geen snijtand"]
+favorite_food: ["sushi"]
+study: ["moderne talen"]

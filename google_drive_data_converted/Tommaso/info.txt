@@ -1,0 +1,5 @@
+name: Tommaso
+hobbies: ["Swimming"]
+memories: ["Collecting eggs in the garden"]
+favorite_food: ["Any meat"]
+study: ["American school of Milano"]

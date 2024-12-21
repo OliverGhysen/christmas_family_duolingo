@@ -1,0 +1,5 @@
+name: Marco
+hobbies: ["Golf tennis"]
+memories: ["Samen jodel muziek zingen op vakantie in de bergen."]
+favorite_food: ["Vol-au-vent"]
+study: ["Industriële ingenieur"]

@@ -1,5 +1,5 @@
 name: Isabelle
-hobbies: ["Hiking"]
-memories: ["In de tuin werken"]
-favorite_food: ["Quiche"]
-study: ["Eye surgeon"]
+hobbies: ["Kiten", "skiën", "wandelen", "golfen", "studeren", "reizen"]
+memories: ["Mooie luxueuse reizen"]
+favorite_food: ["Kreeft en caviaar"]
+study: ["oogjes"]

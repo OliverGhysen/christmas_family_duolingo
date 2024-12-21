@@ -1,0 +1,5 @@
+name: Anaïs
+hobbies: ["Zeilen"]
+memories: ["Gaan skiën"]
+favorite_food: ["Bao zi"]
+study: ["Wetenschappen wiskunde"]

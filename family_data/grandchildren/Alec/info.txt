@@ -1,0 +1,5 @@
+name: Alec
+hobbies: ["Kitesurfen", "sex met meisjes", "racist mopjrs maken", "homofobisch zijn"]
+memories: ["Als kind op duiven jagen", "in de bergen op wandeling gaan"]
+favorite_food: ["Steak"]
+study: ["Toegepaste economische wetenschappen"]

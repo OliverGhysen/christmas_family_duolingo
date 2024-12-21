@@ -1,5 +1,5 @@
 name: Vittorio
 hobbies: ["Gym"]
 memories: ["Missing tooth"]
-favorite_food: ["Pasta pesto"]
+favorite_food: ["Sushi"]
 study: ["School"]

@@ -1,0 +1,5 @@
+name: Paul
+hobbies: ["Scouts, judo, fietsen en met de konijnen spelen"]
+memories: ["Daddy zijn verjaardag vieren te Rumst"]
+favorite_food: ["Mosselen met frietjes"]
+study: ["5e jaar lagere school"]

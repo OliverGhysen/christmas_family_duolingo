@@ -1,0 +1,5 @@
+name: Laura
+hobbies: ["Tennis", "gitaar"]
+memories: ["Dady die raclette maakt voor iedereen in Zwitserland"]
+favorite_food: ["Vol au vent"]
+study: ["Architectuur/Stedenbouw"]
