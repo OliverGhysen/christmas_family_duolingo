@@ -1,0 +1,5 @@
+name: Roxanne
+hobbies: ["Tennis"]
+memories: ["Altijd anoukske genoemd worden"]
+favorite_food: ["Lasagne"]
+study: ["Geneeskunde"]
